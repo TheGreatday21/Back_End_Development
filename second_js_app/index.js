@@ -3,79 +3,73 @@ const express = require('express');
 //This is initializing the express framework . This is most necessary to have an express app. Its like a pip3 install type shi 
 const app = express();
 //assigning the variable app to the function express like import pandas as pd" where app is the pd and express pandas (storing the express variable ina variable )
-const port = 5001;
+const port = 3000;
 //we create a port for the app.. Ensure the port is unique so that you have no conflicts 
 //Anytime your making a request to the front end goes directly to that port 
 
-app.listen(port, () => {
+//app.listen will only appear in my console but not on the ui
 
+app.listen(port, () => {
     console.log("This is a backend file ");
     console.log(`My app is listening at http://localhost:${port}`);
-    console.log("God is good all the time if he aint then you lying in the rain in the shine God is good all the time ");
+    console.log("God is good all the time if he ain't then you lying in the rain in the shine God is good all the time ");
 });
 
 /*
-//using the get function to create end points//
-//GET
+                            ------------------END POINTS------------------
+        A) GET END POINT 
+example 1
+*/
 //The next are parameters after the end point 
 app.get('/greetings', (request,response) => {
-    return response.send("Hello Elijah The Great");
+    return response.send(greetings.my_business_logic());
 });
-//////////* *NOTE : We have to manually go the the opened web page and change the url including our end point :
+/////////NOTE : We have to manually go the the opened web page and change the url including our end point :
 ////localhost:3000/greetings//
 
 
-//Declare a variable that will show a list of your friends
-let friends = ['Elijah','Gundu','Joshua','Simon_do','John','Stacy'];
-//Lets declare the endpoint 
-app.get('/list' , (request,response) =>{
-    return response.send(`This is a list of some of my friends ${friends}`);
-}
-);
-
-
 /////NOTE ///If you want to lengthen an end point we use the "-" in js 
-///example app.get('/list-of-friends')
 
 
-////Making the above list to OBJECTS 
+//THIS IS OUR CURRENT CONTROLLER THAT GETS THE FUNCTIONS FROM THE OTHERS MODELS AND SERVICE AND CALLS THEM TO SHOW ON THE UI 
+//AT THIS POINT WE IMPORT THE FUNCTIONS 
+app.get ('/list-of-students', (request,response) =>{
 
-let friend =[
-    {'id':1,'name':'Elijah'},
-    {'id':2,'name':'Gundu'},
-    {'id':3,'name':'Joshua'},
-    {'id':4,'name':'Simon_do'},
-    {'id':5,'name':'John'},
-    {'id':6,'name':'Stacy'},
-];
-app.get('/list-of-friends-by-id' , (request,response) =>{
-
-    return response.send(friend);
-    }
-);
-*/
-
-                                            ////Request parameters///////
-let student =[
-    {'id':1,'name':'Elijah'},
-    {'id':2,'name':'Gundu'},
-    {'id':3,'name':'Joshua'},
-    {'id':4,'name':'Simon_do'},
-    {'id':5,'name':'John'},
-    {'id':6,'name':'Stacy'},
-];
-
-app.get ('/list-of-friends-by-id /: studentId', (request,response) =>{
-
-    console.log("Logging request params",request.params);
-    
-    console.log("Use value from the front end" ,request.params.studentId);
-
-    for(let x = 0 ; x<7 ;x++ ){
-        if(request.params.studentId == student[x].id){
-            return response.send(student[x]);
-        }
-        console.log(student[x]);
-    }
-    return response.send('FOUND NOTHING ');
+    console.log("I got here too");
+    return response.send(my_business_logic.getstudents());
 });
+/*
+                    ----------POST-------------
+example 1
+*/
+app.post("/sign-up",(req,res) =>{
+    console.log("Logging request body", request.body);
+    return response.status
+});
+
+
+/*
+                                                -------SUMMARY------------
+THE FRONT END ALSO KNOWN AS THE UI 
+THE BACKEND (API) BROKEN DOWN TO THREE
+
+///1. Controller 
+Anything that has the end point goes to the controller . This is where all the staff from the model ans service are called using key termg like:-
+    `app.get`
+    `app.listen`
+
+////2. Service
+ This is where we store all our functions for the app
+Using key terms like `const` to create the functions 
+    `const getstudents = () =>{`
+    `console.log("Getting here ",mydb);`
+    `return mydb;`
+    `}`
+    
+////3. Model-database 
+Keeps all the files in the queries are stored here (DATA)
+Involves the business logic folders and information
+
+let students = [{"name":"Keks", "id":1}];
+    
+*/
