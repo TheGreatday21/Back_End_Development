@@ -7,6 +7,7 @@ const mydb = require("../models/mydb.js");
 
 const db = require ('../models/db_connection.js');//connecting to the database
 
+/*
 const getstudents = () =>{
     console.log("Getting here ",mydb);
     return mydb;
@@ -24,7 +25,7 @@ const getStudentById =  () => {
 };
 
 
-
+*/
 //Creating a function to connect to the data base
 const getAllStudents = () => {
     db.query ('SELECT * FROM students', 
@@ -38,7 +39,7 @@ const getAllStudents = () => {
 }
 
 
-////for functions tio work we must first make sure we export them
+////for functions to work we must first make sure we export them
 
 module.exports ={getAllStudents, getStudentById,getstudents};
 
