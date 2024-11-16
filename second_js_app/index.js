@@ -7,37 +7,26 @@ const port = 3000;
 //we create a port for the app.. Ensure the port is unique so that you have no conflicts 
 //Anytime your making a request to the front end goes directly to that port 
 
-//app.listen will only appear in my console but not on the ui
-
-app.listen(port, () => {
-    console.log("This is a backend file ");
-    console.log(`My app is listening at http://localhost:${port}`);
-    console.log("God is good all the time if he ain't then you lying in the rain in the shine God is good all the time ");
-});
 
 /*
                             ------------------END POINTS------------------
         A) GET END POINT 
-example 1
-*/
+
 //The next are parameters after the end point 
-app.get('/greetings', (request,response) => {
-    return response.send(greetings.my_business_logic());
-});
-/////////NOTE : We have to manually go the the opened web page and change the url including our end point :
-////localhost:3000/greetings//
+/////////NOTE : We have to manually go the the opened web page and change the url including our end point 
 
-
-/////NOTE ///If you want to lengthen an end point we use the "-" in js 
-
+/////NOTE ///If you want to lengthen an end point we use the "-" in js not the "_"
 
 //THIS IS OUR CURRENT CONTROLLER THAT GETS THE FUNCTIONS FROM THE OTHERS MODELS AND SERVICE AND CALLS THEM TO SHOW ON THE UI 
 //AT THIS POINT WE IMPORT THE FUNCTIONS 
+*/
 app.get ('/list-of-students', (request,response) =>{
 
     console.log("I got here too");
     return response.send(my_business_logic.getstudents());
 });
+
+
 /*
                     ----------POST-------------
 example 1
@@ -74,3 +63,18 @@ let students = [{"name":"Keks", "id":1}];
     
 */
 
+
+
+app.get ('/get-all-students', (request,response) => {
+
+    return response.status(200).send(my_business_logic.getAllStudents());
+})
+
+
+//app.listen will only appear in my console but not on the ui
+
+app.listen(port, () => {
+    console.log("This is a backend file ");
+    console.log(`My app is listening at http://localhost:${port}`);
+    console.log("God is good all the time if he ain't then you lying in the rain in the shine God is good all the time ");
+});
