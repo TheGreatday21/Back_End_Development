@@ -18,7 +18,7 @@ db.connect(err => {
 module.exports = db;
 
 
-//Th default port for all databses is port 3306
+//The default port for all databases is port 3306
 
 
 

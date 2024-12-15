@@ -3,10 +3,16 @@ const express = require('express');
 //This is initializing the express framework . This is most necessary to have an express app. Its like a pip3 install type shi 
 const app = express();
 //assigning the variable app to the function express like import pandas as pd" where app is the pd and express pandas (storing the express variable ina variable )
-const port = 3000;
+const port = 5008;
 //we create a port for the app.. Ensure the port is unique so that you have no conflicts 
 //Anytime your making a request to the front end goes directly to that port 
+const my_business_logic = require("./service/my_business_logic.js");
 
+//app.listen will only appear in my console but not on the ui
+
+app.listen(port, () => {
+    console.log(`My app is listening at http://localhost:${port}`);
+});
 
 /*
                             ------------------END POINTS------------------
@@ -20,12 +26,10 @@ const port = 3000;
 //THIS IS OUR CURRENT CONTROLLER THAT GETS THE FUNCTIONS FROM THE OTHERS MODELS AND SERVICE AND CALLS THEM TO SHOW ON THE UI 
 //AT THIS POINT WE IMPORT THE FUNCTIONS 
 */
-app.get ('/list-of-students', (request,response) =>{
-
+app.get ('/list-of-students', (res,req) =>{
     console.log("I got here too");
     return response.send(my_business_logic.getstudents());
 });
-
 
 /*
                     ----------POST-------------
@@ -35,7 +39,6 @@ app.post("/sign-up",(req,res) =>{
     console.log("Logging request body", request.body);
     return response.status
 });
-
 
 /*
                                                 -------SUMMARY------------
@@ -63,18 +66,11 @@ let students = [{"name":"Keks", "id":1}];
     
 */
 
-
-
 app.get ('/get-all-students', (request,response) => {
+    
+    //return response.status(200).send(my_business_logic.listStudents());
+    return response.send(my_business_logic.listStudents());
 
-    return response.status(200).send(my_business_logic.getAllStudents());
-})
-
-
-//app.listen will only appear in my console but not on the ui
-
-app.listen(port, () => {
-    console.log("This is a backend file ");
-    console.log(`My app is listening at http://localhost:${port}`);
-    console.log("God is good all the time if he ain't then you lying in the rain in the shine God is good all the time ");
 });
+
+

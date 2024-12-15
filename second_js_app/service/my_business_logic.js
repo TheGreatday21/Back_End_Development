@@ -1,18 +1,20 @@
 
 //This is where we put all or computational knowledge (Includes the functions of the app)
 
-//We are looping through to see a student by there id
-//we import the student seervice so that it can be used 
+
 const mydb = require("../models/mydb.js");
 
 const db = require ('../models/db_connection.js');//connecting to the database
 
-/*
-const getstudents = () =>{
-    console.log("Getting here ",mydb);
-    return mydb;
-};
 
+
+
+//Creating a functions  to connect to the data base
+/////////////////////FOR THE mydb databse /////////
+const getstudents = () => {
+    console.log("Getting here ");
+    return mydb.students;
+};
 
 const getStudentById =  () => {
     for(i =1; i<5; i ++){
@@ -25,9 +27,9 @@ const getStudentById =  () => {
 };
 
 
-*/
-//Creating a function to connect to the data base
-const getAllStudents = () => {
+
+//////////////////////FOR THE db_connection database////////////
+const listStudents = () => {
     db.query ('SELECT * FROM students', 
         (err,results) => {
         if (err){
@@ -39,7 +41,14 @@ const getAllStudents = () => {
 }
 
 
+
+
+
 ////for functions to work we must first make sure we export them
 
-module.exports ={getAllStudents, getStudentById,getstudents};
+module.exports ={listStudents, getstudents, getStudentById};
+
+
+
+
 
